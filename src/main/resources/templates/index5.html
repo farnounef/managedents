@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des groupes</title>
+  <!-- Ajouter le lien vers Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Ajoute un peu d'espace autour du tableau */
+    table {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body class="text-center">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Votre Site</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/signup2">Etudiant </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tooth/signup">Dent</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signuppw">PW</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signupgroupe">Groupe <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+  <div th:switch="${groupes}">
+    <h2 th:case="null">Aucun professeur pour le moment !</h2>
+    <div th:case="*">
+      <h2>Groupes</h2>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th>code</th>
+          <th>year</th>
+          <th>Professor</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+          <th>details</th>
+          
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="groupe : ${groupes}">
+          <td th:text="${groupe.code}"></td>
+          <td th:text="${groupe.year}"></td>
+            <td th:text="${groupe.profGrp.lastName}"></td>
+          <td><a class="btn btn-primary btn-sm" th:href="@{/editgroupe/{id}(id=${groupe.id})}">Modifier</a></td>
+          <td><a class="btn btn-danger btn-sm" th:href="@{/deletegroupe/{id}(id=${groupe.id})}">Supprimer</a></td>
+                    <td><a class="btn btn-danger btn-sm" th:href="@{/groupe-details/{id}(id=${groupe.id})}">details</a></td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      <a class="btn btn-success" href="/addgroupe">Ajouter un nouveau groupe</a>
+    </p>
+    <p>
+      <a class="btn btn-primary btn-sm" th:href="@{/}">Back</a>
+    </p>
+  </div>
+</div>
+
+<!-- Ajouter le lien vers Bootstrap JavaScript (si nécessaire) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

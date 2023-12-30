@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un Professeur</title>
+    <!-- Ajouter le lien vers Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Ajoute un peu d'espace autour du formulaire */
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form action="#" th:action="@{/update/{id}(id=${professor.id})}" th:object="${professor}" th:method="put" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" th:field="*{username}" id="username" placeholder="userName">
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input type="text" class="form-control" th:field="*{password}" id="password" placeholder="password">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </div>
+        <div class="form-group">
+            <label for="firstName">firstName</label>
+            <input type="text" class="form-control" th:field="*{firstName}" id="firstName" placeholder="firstName">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        </div>
+         <div class="form-group">
+            <label for="lastName">lastName</label>
+            <input type="text" class="form-control" th:field="*{lastName}" id="lastName" placeholder="lastName">
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        </div>
+        <div class="form-group">
+            <label for="grade">Grade</label>
+            <input type="text" class="form-control" th:field="*{grade}" id="grade" placeholder="Grade">
+            <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}"></span>
+        </div>
+        <div class="form-group">
+            <label for="file">Changer l'image:</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Mettre à Jour Professeur</button>
+    </form>
+</div>
+
+<!-- Ajouter le lien vers Bootstrap JavaScript (si nécessaire) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

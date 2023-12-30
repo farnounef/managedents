@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un groupe</title>
+    <!-- Ajouter le lien vers Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Ajoute un peu d'espace autour du formulaire */
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form action="#" th:action="@{/updategroupe/{id}(id=${groupe.id})}" th:object="${groupe}" method="post">
+        <div class="form-group">
+            <label for="name">code</label>
+            <input type="text" class="form-control" th:field="*{code}" id="code" placeholder="code">
+            <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+        </div>
+        <div class="form-group">
+            <label for="year">year</label>
+            <input type="text" class="form-control" th:field="*{year}" id="year" placeholder="year">
+            <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="profGrp">Professor:</label>
+            <select class="form-control" id="profGrp" name="profGrp.id" th:field="*{profGrp}" required>
+                <option th:each="prof : ${professors}" th:value="${prof.id}" th:text="${prof.lastName}"></option>
+            </select>
+        </div>
+     
+        <button type="submit" class="btn btn-primary">Mettre à Jour groupe</button>
+    </form>
+</div>
+
+<!-- Ajouter le lien vers Bootstrap JavaScript (si nécessaire) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

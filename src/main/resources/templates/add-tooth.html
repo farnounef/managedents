@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un Dent</title>
+    <!-- Ajouter les liens vers Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <form action="#" th:action="@{/tooth/addtooth}" th:object="${tooth}" method="post">
+        <div class="form-group">
+            <label for="name">name</label>
+            <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter Dent</button>
+    </form>
+</div>
+
+<!-- Ajouter le lien vers Bootstrap JavaScript (si nécessaire) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

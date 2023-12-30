@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un pw</title>
+    <!-- Ajouter les liens vers Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <form action="#" th:action="@{/addpw}" th:object="${pw}" method="post">
+        <div class="form-group">
+            <label for="title">title</label>
+            <input type="text" class="form-control" th:field="*{title}" id="title" placeholder="title">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+        </div>
+        <div class="form-group">
+            <label for="objectif">objectif</label>
+            <input type="text" class="form-control" th:field="*{objectif}" id="objectif" placeholder="objectif">
+            <span th:if="${#fields.hasErrors('objectif')}" th:errors="*{objectif}"></span>
+        </div>
+        <div class="form-group">
+            <label for="docs">docs</label>
+            <input type="text" class="form-control" th:field="*{docs}" id="docs" placeholder="docs">
+            <span th:if="${#fields.hasErrors('docs')}" th:errors="*{docs}"></span>
+        </div>
+       <div class="form-group">
+            <label for="pwTooth">tooth:</label>
+            <select class="form-control" id="toothPw" name="toothPw.id" th:field="*{toothPw}" required>
+                <option th:each="tooth : ${tooths}" th:value="${tooth.id}" th:text="${tooth.name}"></option>
+            </select>
+        </div>
+        
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <label class="form-label">Groupes:</label>
+        <div class="form-check" th:each="grps : ${groupes}">
+            <input type="checkbox" th:id="'group_' + ${grps.id}" th:name="'groupPw'" th:value="${grps.id}" class="form-check-input">
+            <label th:for="'group_' + ${grps.id}" th:text="${grps.code}" class="form-check-label"></label>
+        </div>
+    </div>
+</div>
+
+
+
+
+        <button type="submit" class="btn btn-primary">Ajouter pw</button>
+    </form>
+</div>
+
+<!-- Ajouter le lien vers Bootstrap JavaScript (si nécessaire) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
